@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор принтера</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Выберите принтер</h1>
+
+    <div class="form-group">
+        <form action="/print" method="post" enctype="multipart/form-data">
+            <label for="printer">Выберите принтер:</label>
+                <select class="form-control" id="printer" name="printer">
+                    <option th:each="printer : ${printers}" th:value="${printer}" th:text="${printer}"></option>
+                </select>
+            <label for="file">Выберите файл .xlsx:</label>
+            <input type="file" name="file" id="file" required placeholder="Выберите файл">
+            <button type="submit">Отправить на печать</button>
+        </form>
+    </div>
+
+    <div class="mt-3">
+        <strong>Ваш IP адрес:</strong>
+        <span th:text="${ipAddress}"></span>
+    </div>
+</div>
+</body>
+</html>
